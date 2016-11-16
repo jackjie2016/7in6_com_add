@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">    
+<head> 
+     <meta charset="UTF-8">   
+     <title>去印咯数万红包大派送！我已抢到红包咯，快来抢吧！</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">  
+     <meta name="apple-mobile-web-app-capable" content="yes">      
+     <meta name="apple-mobile-web-app-status-bar-style" content="black">
+     <meta name="format-detection" content="telephone=no">        
+     <link rel="stylesheet" type="text/css" href="../css/reset.css">        
+     <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">        
+     <link rel="stylesheet" type="text/css" href="../css/main.css">        
+     <link rel="stylesheet" type="text/css" href="../css/child.css">  
+     <link type="text/css"  rel="stylesheet" href="../../shop/templates/default/css/pc_cc8af8afaf.css"/>
+     <link type="text/css"  rel="stylesheet" href="../css/code128.css" media="screen" charset="utf-8">
+     <script type="text/javascript" src="../js/code128.js"  charset="utf-8"></script>
+     <script type="text/javascript" src="../js/zepto.min.js"></script>     
+     <script type="text/javascript" src="../js/config.js"></script>        
+     <script type="text/javascript" src="../js/common.js"></script>        
+     <script> var wap_html = "voucher_show";</script>       
+     <script type="text/javascript" src="../js/tmpl/wexin_tuiguang.js"></script>  
+	
+    <style>
+		.bd_voucher{
+			background-color:#000;
+			width:100%;
+		}
+		.app-design{
+			width:100%;
+		}
+		.app-preview{
+			width:100%
+		}
+		.ump-coupon-detail-wrap{
+			width:100%
+		}
+		.app-field-wrap{
+			width:100%	
+		}
+		.ump-coupon-detail-wrap{
+			width:100%
+		}
+		.promote-card-name{
+			
+		}
+		.promote-share{
+			text-align:center
+		}
+		.center{
+			text-align:center
+		}
+		.label-2d{
+			position:relative;
+			width:100%;
+			text-align:center;
+		}
+		.use-now-wrap{
+			
+			position:relative;
+			display:block;
+			width:100%;
+			line-height:100px;
+			text-align:center;
+		}
+		.use-now{
+			display:inline-table;
+			line-height:30px;
+			width:150px;
+			vertical-align:central;
+			text-align:center;
+			border-radius:5px;
+			background-color:#F33;
+			color:#FFF;
+			
+		}
+		.use-now link{
+			text-decoration:none;
+			color:#FFF;
+		}
+		.use-now visited {
+			color:#FFF;
+		}
+		.use-now active { 
+			color:#FFF;
+		}
+		pre{
+			white-space: pre-wrap;       
+			white-space: -moz-pre-wrap;  
+			white-space: -pre-wrap;      
+			white-space: -o-pre-wrap;    
+			word-wrap: break-word;   
+		}
+    </style>
+    <script>
+		$(document).ready(function(){
+
+			var key = getcookie('key');
+				if(key==''){
+                                        referurl = document.referrer;
+                                        addcookie('referurl1',referurl);
+					window.location.href = WapSiteUrl+'/tmpl/member/login.html';
+				}
+
+			voucher_id=GetQueryString('voucher_id');
+			
+			uid=GetQueryString('uid');
+			
+			voucher_code=GetQueryString('voucher_code');
+			
+			get_voucher(voucher_id,uid,key,voucher_code);
+			
+			
+		});
+		function GetRandomNum(Min,Max)
+		{   
+			var Range = Max - Min;   
+			var Rand = Math.random();   
+			return(Min + Math.round(Rand * Range));   
+		}   
+		
+		function get_voucher(voucher_id,uid,key,voucher_code){
+			$.ajax({
+				type:'post',
+				url:ApiUrl+"/index.php?act=member_voucher&op=show_voucher&uid=" + uid,
+				data:{key:key,voucher_id:voucher_id,uid:uid,voucher_code:voucher_code},
+				dataType:'json',
+				success:function(result){
+					console.log(result);
+					var data = result.datas;
+					if(data.user_id && data.user_id!=uid){
+							window.location.href = WapSiteUrl+'/tmpl/voucher.html?voucher_id=' + data.voucher_t_id;
+							return false;
+					}
+					
+					var html = template.render('text-content', data);				
+					$("#voucher-text-content").html(html);
+					$("#voucher_barcode").html(code128(data.voucher_code));
+					//$("#voucher_barcode").css("margin-left:");
+					//createBarcode('voucher_barcode',"sddddddddddddd",'B');
+/*						$(".promote-card-name").text(data.voucher_title);
+
+						$(".v-price").text(data.voucher_price);
+
+						$(".js-desc-detail").html(data.voucher_desc);
+				
+
+						$(".promote-limit").text(data.voucher_limit);
+
+					
+						$(".v-date").text("有效日期：" + data.voucher_start_date + " 00 : 00  -  " + data.voucher_end_date + " 00 : 00");*/
+
+				}
+/*                error: function () {
+                    //alert('error');
+                }*/
+			});
+		}
+    </script>
+</head>    
+<body>  
+<img src="../images/djj.jpg" style="width:0px; height:0; position:absolute"/>
+<div id="voucher-text-content">	</div>
+<script type="text/html" id="text-content">
+<div class="bd_voucher">
+ 
+<!--  app 预览  -->
+            <div class="app-design" style="width:100%">
+            <div class="app-preview" style="width:100%">
+                    <!--<div class="app-header"></div>-->
+<!--                    <div class="app-entry">                        <div class="app-config js-config-region">                <div class="app-field clearfix editing"> <h1><span>优惠券</span></hi>-->
+            <div class="app-field-wrap editing" style="width:100%">
+
+                <div class="ump-coupon-detail-wrap" style="width:100%">
+                    <div class="promote-card">
+                        <div class="clearfix">
+                            <p class="pull-left font-size-16 promote-card-name"><%=voucher_title%></p>
+                            
+                                <!--<p class="pull-right font-size-14 center promote-share transparent-color js-share">分享</p>-->
+                            
+                        </div>
+                        <p class="center promote-value">
+                            <span class="promote-value-sign">
+                                <span>￥</span>
+                                <i class="v-price">
+                                     <%=voucher_price%>
+                                    
+                                </i>
+                            </span>
+                        </p>
+                        <p class="center font-size-14 promote-limit">
+                            
+							<%if(voucher_limit!=0){%>
+                                订单满 <%=voucher_limit%> 元 (含运费)
+                            <%}else{%>
+								红包使用无限制
+							<%}%>
+                        </p>
+                        <p class="center font-size-14 transparent-color v-date">
+                            有效日期：<%=voucher_start_date%> - <%=voucher_end_date%>
+                            
+                        </p>
+                        <div class="dot"></div>
+                    </div>
+                    <div class="promote-descs">
+						<br>
+						<div>
+						
+							<div class="barcode2" id="voucher_barcode" style="margin-left:10%">barcode</div>
+
+						<p class="font-size-14 c-gray-dark promote-desc-title">使用说明</p>
+                        <div class="block">
+                            <div class="block-item clearfix">
+                                <span class="js-desc-detail">
+                                       <pre><%=voucher_desc%></pre>
+                                </span>
+								<br>
+                                <span>
+                                特别声明：<br>
+                                    1.本红包仅限在实体店晨光文具乐清4S店和去印咯线上商城使用。门店地址：乐清市宁康西路138号华 仪电商园内。电话：0577-61577877
+                                    <br>
+                                    2.本红包需进店出示使用，截屏、复制、修改无效。
+                                    <br>
+                                    3.本红包不设找零，不可兑现现金。且不能与其他优惠同时使用。
+                                    <br>
+                                    4.红包抵扣部分的货款不能开具发票。不适用于团体购买、企业用户购买、批发及其他非以个人消费为 目的的购买行为。
+                                    <br>
+                                    5.本活动未尽事宜以店铺宣传为准，最终解释权归去印咯—晨光文具乐清4S店。
+                                </span>
+                                <!--<a class="c-blue more-desc pull-right js-more-desc" href="javascript:void(0)">更多</a>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+<!--            </div></div><div class="app-fields js-fields-region"><div class="app-fields ui-sortable"></div></div>-->
+                    </div>
+                    <div class="js-add-region"><div></div></div>
+                </div>
+            </div>
+            <?php if?>
+			<div class="label-2d">
+				<img src="../images/label2d.jpg" style="width:30%;" />
+				<p>长按识别二维码关注去印咯商城</p>	
+			</div>
+			<div class="use-now-wrap">
+				<a href="/wap" class="use-now" style="color:#fff">立即使用</a>			
+			</div>
+<!--   -->
+</div>
+
+</script> 
+                       
+	<script type="text/javascript" src="../js/swiper.min.js"></script>                                        
+	<script type="text/javascript" src="../js/template.js"></script>                                        
+	<script type="text/javascript" src="../js/swipe.js"></script>                                        
+	<script type="text/javascript" src="../js/simple-plugin.js"></script> 
+                                                                                  
+	<!--<script type="text/javascript" src="../js/tmpl/voucher_show.js"></script> -->                                       
+</body>                                       
+</html>

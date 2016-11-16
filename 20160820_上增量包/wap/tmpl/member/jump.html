@@ -1,0 +1,124 @@
+<!doctype html>
+
+<!---微信登陆插件start-->
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>跳转中..</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <meta name="format-detection" content="telephone=no">
+
+ <script language="javascript" type="text/javascript"> 
+
+         
+
+                function GetRequest() { 
+
+          var url = location.search; //获取url中"?"符后的字串 
+
+          var theRequest = new Object(); 
+
+          if (url.indexOf("?") != -1) { 
+
+          var str = url.substr(1); 
+
+          strs = str.split("&"); 
+
+          for(var i = 0; i < strs.length; i ++) { 
+
+          theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]); 
+
+          } 
+
+          } 
+
+          return theRequest; 
+
+          } 
+
+           
+
+         function myfunction(){
+
+             
+
+                var Request = new Object(); 
+
+                     Request = GetRequest(); 
+
+         
+
+            addcookie('username',Request['username']);
+
+            addcookie('key',Request['key']);
+
+            addcookie('member_id',Request['member_id']);
+
+             
+
+           var referurl = getcookie('referurl');
+
+        //jewen修改域名
+           if(referurl===""){
+
+             window.location.href=WapSiteUrl;    
+
+          }else{
+				if(referurl=="/wap/tmpl/member/login.html"){
+					 window.location.href=WapSiteUrl;
+				}
+				else{
+			  		 var referurl=decodeURIComponent(referurl);      
+					 window.location.href=""+referurl+"";   
+				}
+           }
+
+             
+
+         }
+
+       
+
+  
+
+    </script>
+
+    
+
+    
+
+</head>
+
+<body onLoad="myfunction()">
+
+     跳转中..
+
+    <script type="text/javascript" src="../../js/config.js"></script>
+
+    <script type="text/javascript" src="../../js/zepto.min.js"></script>
+
+    <script type="text/javascript" src="../../js/template.js"></script>
+
+    <script type="text/javascript" src="../../js/common.js"></script>
+
+    <script type="text/javascript" src="../../js/tmpl/common-top.js"></script>
+
+    <script type="text/javascript" src="../../js/simple-plugin.js"></script>
+
+    <script type="text/javascript" src="../../js/tmpl/login.js"></script>
+
+</body>
+
+</html>
+
+<!---微信登陆插件end-->

@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实物交易订单</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" type="text/css" href="../../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../../css/member.css"> 
+     <script type="text/javascript" src="../../js/config.js"></script>
+     <script type="text/javascript" src="../../js/zepto.min.js"></script>  
+     <script type="text/javascript" src="../../js/template.js"></script> 
+     <script type="text/javascript" src="../../js/tmpl/common-top.js"></script>
+     <script type="text/javascript" src="../../js/common.js"></script>
+     <script type="text/javascript" src="../../js/tmpl/wexin_tuiguang.js"></script>
+     <script>  var wap_html="order_list"; </script>          
+</head>
+<style type="text/css">
+    .header-wrap { background: #f6f6f6 !important;}
+    body{ background: #f6f6f6;}
+	.button{
+		text-align: center;
+		display: block;
+		width: 20%;
+		margin: 6px 0 0 auto;
+		line-height: 25px;
+		height: 25px;
+		background: #fe0a3e !important;
+		border-radius: 6px;
+		padding: 0 6px;
+		color: #fff !important;
+	}
+</style>
+<body>
+    <header id="header"></header>
+    <div class="order-list-wp" id="order-list">
+    </div>
+    <script type="text/html" id="order-list-tmpl">
+        <div class="d_deal_order">
+            <a class="d_deal_curr" href="?order_state=10" id="nav-10">待付款</a>
+            <a href="?order_state=20" id="nav-20">待发货</a>
+            <a href="?order_state=30" id="nav-30">侍收货</a>
+            <a href="?order_state=40" id="nav-40">已完成</a>
+        </div>
+        <div class="order-list d_pd0 d_deal_list">
+            <%if (order_group_list.length >0){%>
+                <ul>
+                    <%for(var i = 0;i<order_group_list.length;i++){
+                        var orderlist = order_group_list[i].order_list;
+                    %>
+                        <li class="d_bd0 <%if(order_group_list[i].pay_amount){%>green-order-skin<%}else{%>gray-order-skin<%}%> <%if(i>0){%>mt10<%}%>">
+                            <div class="order-ltlt">
+                                <p>
+                                    下单时间：
+                                   <%=$getLocalTime(order_group_list[i].add_time)%>
+                                </p>
+                            </div>
+                            <% for(var j = 0;j<orderlist.length;j++){
+                                var order_goods = orderlist[j].extend_order_goods;
+                                var order_common = orderlist[j].extend_order_common;
+                            %>
+                                <div class="order-lcnt">
+                                    <div class="order-lcnt-shop">
+                                        <p>订单编号：<%=orderlist[j].order_sn%></p>
+                                        <span class="<%=stateClass%>">												
+												<%
+													var iflock = orderlist[j].lock_state;
+													var shipping_type = orderlist[j].shipping_type;
+													var order_state = orderlist[j].order_state;
+													if(iflock>0){
+												%>	
+													退款退货中 ...												
+												<%}else if(shipping_type==2 && order_state==20){%>
+													到店自提<br>自提码：<%=orderlist[j].dlyo_pickup_code%>
+												<%}else{%>
+													<%=orderlist[j].state_desc%>
+												<%}%>												
+										</span>
+                                    </div>
+                                    <div class="order-shop-pd">										<table width="100%">
+											<%for (var k = 0;k<order_goods.length;k++){%>
+											<tr><td width="80%"><a class="order-ldetail clearfix <%if(k>0){%>bd-t-de<%}%>" href="<%=WapSiteUrl%>/tmpl/product_detail.html?goods_id=<%=order_goods[k].goods_id%>">
+												<span class="order-pdpic">
+													<img src="<%=order_goods[k].goods_image_url%>"/>
+												</span>
+												<div class="order-pdinfor">
+													<p><%=order_goods[k].goods_name%></p>
+													<p>
+														商品单价：<span class="clr-d94 d_clr-red">￥<%=order_goods[k].goods_price%></span>
+													</p>
+													 <p>
+														商品数目：<span class="clr-d94  d_clr-red"><%=order_goods[k].goods_num%></span>
+													</p>
+												</div>
+											</a></td>											<td>											</td></tr>
+											<%}%>										</table>
+                                    </div>
+                                    <div class="order-shop-total">
+                                        <p>共<%=order_goods.length%>种商品</p>
+                                        <p>运费：<span class="clr-d94 d_clr-red">￥<%=orderlist[j].shipping_fee%></span></p>
+                                        <% 
+                                            if(order_common.voucher_price !=0){
+                                            var voucher_num = '';
+                                            var voucher_array = [];
+                                            voucher_array = order_common.voucher_price.split('|');
+                                            for(var n = 0;n< voucher_array.length;n++){
+                                               
+                                                if(n == voucher_array.length-1){
+                                                     voucher_num += voucher_array[n];
+                                                }else{
+                                                    voucher_num += voucher_array[n];
+                                                    voucher_num +="和￥";
+                                                }
+                                                
+                                            }
+                                        %>
+                                        <p>使用代金券：<span class="clr-d94 d_clr-red">￥<%=voucher_num%></span></p>
+                                        <% }%>
+                                        <p class="clr-c07">合计：<span class="clr-d94 d_clr-red">￥<%=orderlist[j].order_amount%> </span></p>
+										<%if((order_state == 20 || order_state== 30) && iflock==0){%>
+													<a class="button" href="<%=WapSiteUrl%>/tmpl/member/member_refund_all.html?order_id=<%=orderlist[j].order_id%>">申请退款<%=order_goods[k]%></a>
+										<%}%>
+										
+                                        <!--<p class="mt5">
+                                            <%
+                                                var stateClass ="ot-finish";
+                                                var orderstate = orderlist[j].order_state;
+                                                if(orderstate == 20 || orderstate == 30 || orderstate == 40){
+                                                    stateClass = stateClass;
+                                                }else if(orderstate == 0) {
+                                                    stateClass = "ot-cancel";
+                                                }else {
+                                                    stateClass = "ot-nofinish";
+                                                }
+                                            %>
+                                            <span class="<%=stateClass%>"><%=orderlist[j].state_desc%></span>
+                                            <%if(orderlist[j].if_receive){%>
+                                            <a href="javascript:void(0)" order_id="<%=orderlist[j].order_id%>" class="sure-order">确认订单</a>
+                                            <%}%>
+                                             <%if(orderlist[j].if_cancel){%>
+                                            <a href="javascript:void(0)" order_id="<%=orderlist[j].order_id%>" class="cancel-order">取消订单</a>
+                                            <%}%>
+                                        </p>-->
+                                    </div>
+                                    <div class="d_deal_hdle">
+                                        <p class="d_hdle_btn">
+                                            <%
+                                                var stateClass ="ot-finish";
+                                                var orderstate = orderlist[j].order_state;
+                                                if(orderstate == 20 || orderstate == 30 || orderstate == 40){
+                                                    stateClass = stateClass;
+                                                }else if(orderstate == 0) {
+                                                    stateClass = "ot-cancel";
+                                                }else {
+                                                    stateClass = "ot-nofinish";
+                                                }
+                                            %>
+                                            <!--<span class="<%=stateClass%>"><%=orderlist[j].state_desc%></span>-->
+                                            <%if(orderlist[j].if_receive){%>
+                                            <a href="javascript:void(0)" order_id="<%=orderlist[j].order_id%>" class="sure-order">确认订单</a>
+                                            <%}%>
+                                             <%if(orderlist[j].if_cancel){%>
+                                            <a href="javascript:void(0)" order_id="<%=orderlist[j].order_id%>" class="cancel-order">取消订单</a>
+                                            <%}%>
+											
+                                            <!--<a class="d_hdle_curr" href="javascript:;">确认收货</a>-->
+											<% if(orderlist[j].if_deliver){%>
+                                            <a href="javascript:void(0)" order_id="<%=orderlist[j].order_id%>" class="viewdelivery-order">查看物流</a>
+                                            
+                                        	<%}%>
+											<% if(orderlist[j].if_evaluation){%>
+                                            	<a href="../assess.html?order_id=<%=orderlist[j].order_id%>" order_id="<%=orderlist[j].order_id%>" class="viewdelivery-order">评  价</a>
+											<%}%>
+										</p>
+                                        <%if(order_group_list[i].pay_amount && order_group_list[i].pay_amount>0){%>
+                                            <a href="<%=ApiUrl %>/index.php?act=member_payment&op=pay&key=<%=key %>&pay_sn=<%=order_group_list[i].pay_sn %>" class="l-btn-login d_order" >订单支付(￥<%=orderlist[j].order_amount%>)</a>
+                                        <%}%>
+                                    </div>
+                                </div>
+                            <%}%>
+                            <!--<%if(order_group_list[i].pay_amount && order_group_list[i].pay_amount>0){%>
+                                <a href="<%=ApiUrl %>/index.php?act=member_payment&op=pay&key=<%=key %>&pay_sn=<%=order_group_list[i].pay_sn %>" class="l-btn-login" >订单支付</a>
+                            <%}%>-->
+                        </li>
+                    <%}%>
+                </ul>
+                <!--<div class="pagination mt10">
+                    <a href="javascript:void(0);" class="pre-page <%if(curpage <=1 ){%>disabled<%}%>">上一页</a>
+                    <a href="javascript:void(0);" has_more="<%if (hasmore){%>true<%}else{%>false<%}%>"  class="next-page <%if (!hasmore){%>disabled<%}%>">下一页</a>
+                </div>-->
+            <%}else {%>
+                <div class="no-record">
+                    暂无记录
+                </div>
+            <%}%>
+        </div>
+        
+    </script>
+    <div id="footer"></div>
+               
+	<script type="text/javascript" src="../../js/swiper.min.js"></script>                                        
+	<script type="text/javascript" src="../../js/swipe.js"></script>                                        
+	<script type="text/javascript" src="../../js/simple-plugin.js"></script>                                                                        
+	<script type="text/javascript" src="../../js/tmpl/footer.js"></script>                                        
+    <script type="text/javascript" src="../../js/tmpl/order_list.js"></script>
+
+    <script type="text/javascript">
+
+    </script>
+</body>
+</html>

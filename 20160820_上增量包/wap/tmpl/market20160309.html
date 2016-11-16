@@ -1,0 +1,383 @@
+<!doctype html>
+
+<html lang="en">
+
+	<head>
+
+		<meta charset="UTF-8">
+
+		<title>小区超市</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<meta name="format-detection" content="telephone=no">
+
+		<link rel="stylesheet" type="text/css" href="../css/reset.css">
+
+		<link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
+
+		<link rel="stylesheet" type="text/css" href="../css/main.css">
+
+		<link rel="stylesheet" type="text/css" href="../css/child.css">
+
+		<link rel="stylesheet" type="text/css" href="../css/swiper.css">
+
+		<link rel="stylesheet" type="text/css" href="../css/market.css">
+
+		<link rel="stylesheet" type="text/css" href="../css/index.css">
+
+		<style type="text/css">
+			.d_ft_ht {
+				height: 0 !important;
+			}
+			
+3			.menu_category2 {
+				top: 0px;
+				/*position: fixed;*/
+				text-align: center;
+				height: 30px;
+				line-height: 30px;
+				width: 100%;
+				overflow: hidden;
+				background-color: #fee;
+				padding: 0.3em;
+			}
+			
+			.menu_category3 {
+				text-align: left;
+				height: 30px;
+				line-height: 30px;
+				width: 3000px;
+			}
+			
+			.menu_category3 a {
+				display:block;
+				line-height: 20px;
+				border: solid 1px #6f6f6f;
+				padding: 0.3em;
+				color:#6f6f6f;
+				border-radius:8px;
+				float:left;
+				margin-right:5px;
+			}
+			
+			.d_wht_bg {
+				background: #fff !important;
+				height: 100%;
+				padding-top: 0px;
+			}
+			
+			/*.d_fl_container {
+				padding-top: 53px;
+			}*/
+			
+			.header-bd {
+				position: fixed
+			}
+			.menu_category2{padding:10px 10px;}
+			
+			#product_list ul  li del {display:none;}
+			
+			.content .tabs .left a{border-radius:5px 0 0 5px;float:right;text-align: center;border-right:none;}
+			.content .tabs .right a{border-radius:0 5px 5px 0;text-align: center;border-left:none;}
+		</style>
+	</head>
+
+	<body id="home-320">
+
+		<div class="search" style="background-color:#fe652c">
+
+			<div class="header-wrap" style="background-color:#fe652c"> <a href="javascript:history.back();" class="header-back"><span></span><i style="color:#fff;">返回</i></a>
+
+				<div class="htsearch-wrap d_htsearch-wrap" style="background-color:#fe652c"> <span></span>
+
+					<input type="text" class="htsearch-input clr-999 d_htsearch-input" value="" id="keyword" placeholder="&nbsp;&nbsp;搜索店铺内商品" />
+
+					<a href="javascript:void(0);" class="search-btn d_search-btn" style="display:none">搜索</a> </div>
+
+			</div>
+
+		</div>
+
+		<header id="header"></header>
+
+		<div class="content">
+			<table width="100%" style="background-color:#fe652c" height="65px" class="tabs">
+				<tr>
+					<td class="left"><a href="store_list.html" class="btn-white" style="background-color:#fe652c;width:66%;color:#fff;">全部商家</a></td>
+
+					<td class="right"><a href="market.html" class="btn-white" style="width:66%;color:#fe652c;">小区超市</a></td>
+				</tr>
+			</table>
+		</div>
+
+		<div class="box">
+			
+			<div class="d_swiper-container">
+				<ul class="swiper-wrapper" id="categroy-cnt">
+					<script type="text/html" id="category-one">
+						<li class="swiper-slide"><a href="/wap/tmpl/go_store.html?store_id=36">全部</a></li>
+
+						<% for(var i = 0;i<class_list.length;i++){ 
+
+                            var locUrl = "";
+
+                            if(class_list[i].text.length >0) {
+
+                            locUrl = WapSiteUrl+"/tmpl/product_second_categroy.html?gc_id="+class_list[i].gc_id;
+
+                            }else {
+
+                            locUrl = WapSiteUrl+"/tmpl/product_list.html?gc_id="+class_list[i].gc_id;
+
+                            }
+
+                            %>
+
+							<li class="swiper-slide" gc_id="<%=class_list[i].gc_id%>" id="li-<%=class_list[i].gc_id%>">
+								<a href="#d_swiper-main" id="<%=locUrl%>">
+									<%=class_list[i].gc_name %>
+								</a>
+							</li>
+
+							<% } %>
+
+								<!--<li class="swiper-slide d_sort_curr"><a href="javascript:;">服饰鞋帽</a></li>-->
+
+								<li class="swiper-slide" style="height:110px !important; border:none;"></li>
+
+								<!-- <div style="height:80px; background:green;"></div> -->
+
+					</script>
+				</ul>
+			</div>
+			
+			<div class="content d_wht_bg" id="d_swiper-main">
+	
+				
+				<div>
+					<div class="d_pro_main">
+	
+						<div class="d_fl_pro">
+	
+							<div class="d_fl_bnr" id="banner_mobile"></div>
+							<div id="categroy-cnt2">
+	
+								<script type="text/html" id="category2">
+									<div class="menu_category2">
+										<div class="menu_category3" id="menu_category3">
+											<%for(i=0;i<class_list.length;i++){%>
+	
+												<%if(class_list[i].gc_parent_id==gc_id){%>
+	
+													<%if(i==1){%><a href="javascript:;" onclick="location.href = '/wap/tmpl/product_list.html?gc_id= <%=gc_id%>'"> 全部 </a>
+														<%}%>
+															<a href="javascript:;" onclick="location.href = '/wap/tmpl/product_list.html?gc_id= <%=class_list[i].gc_id %>'" gc_id="<%=class_list[i].gc_id %>">
+																<%=class_list[i].gc_name%>
+															</a>
+	
+															<!--                                            <%for(j=0;j<class_list.length;j++){%>
+	    
+	                                                    <%if(class_list[j].gc_parent_id==class_list[i].gc_id){%>
+	    
+	                                                    <dt><a href="javascript:;"  class="class_click" gc_id="<%=class_list[j].gc_id %>" ><img width="80%" src="../../data/upload/shop/common/category-class_logo-<%=class_list[j].gc_id%>.jpg"><p><%=class_list[j].gc_name%></p></a></dt>
+	    
+	                                                    <%}%>
+	    
+	                                                 <%}%>-->
+	
+															<%}%>
+	
+																<%}%>
+										</div>
+									</div>
+								</script>
+							</div>
+						</div>
+						<div class="d_fl_container">
+	
+							<div id="product_list"></div>
+							
+						</div>
+					</div>
+				</div>
+			</div>	
+			
+			
+		</div>
+		
+
+		</div>
+
+		<!--		<div class="product-cnt d_pd10 d_pbtm">
+
+			<div id="product_list"></div>
+
+			 <div class="pagination mt10">
+		
+        		<span>共<span id="page_total"></span>页 <span id="goods_total"></span>商家</span>
+                
+				<a href="javascript:void(0);" class="pre-page disabled">上一页</a>
+
+				<select name="page_list" style=" height:31px !important; line-height:30px; vertical-align: top; border-radius:4px;">
+
+				</select>
+
+				<a href="javascript:void(0);" class="next-page ">下一页</a>
+
+			</div>  
+
+		</div>-->
+		<div id="allmap"></div>
+
+		<!--<div class="footer" id="footer"></div>-->
+
+		<input type="hidden" name="key" value="4">
+
+		<input type="hidden" name="order" value="1">
+
+		<input type="hidden" name="page" value="10">
+
+		<input type="hidden" name="curpage" value="1">
+
+		<input type="hidden" name="hasmore">
+
+		<input type="hidden" name="gc_id" value="">
+
+		<input type="hidden" name="keyword">
+
+		<script type="text/html" id="home_body">
+
+			<% if(goods_list.length >0){%>
+
+				<ul class="mall-pro-list clearfix">
+
+					<%for(i=0;i<goods_list.length;i++){%>
+
+						<li goods_id="<%=goods_list[i].goods_id;%>">
+
+							<a href="product_detail.html?goods_id=<%=goods_list[i].goods_id;%>" title="<%=goods_list[i].goods_name;%>">
+				
+                    <img src="<%=goods_list[i].goods_image_url;%>" />
+                    
+					<span class="title">
+
+						<%=goods_list[i].goods_name;%>
+
+					</span>
+					<span class="num">1个</span>
+
+						<span class="exp">
+
+							<em>￥<%=goods_list[i].goods_price;%></em>
+
+							<%
+
+								if(goods_list[i].group_flag){
+
+							%>
+
+								<em>团</em>
+
+							<%
+
+								}
+
+								if(goods_list[i].xianshi_flag){
+
+							%>
+
+								<em>降</em>
+
+							<%
+
+								}
+
+							%>
+							<em><del style="color: #666666;"><em style="color: #666666;font-size: 0.5rem;">￥<%=goods_list[i].goods_marketprice;%></em></del></em>
+						   <!-- <em style="color: #666666;float: right;padding-right: 0.5rem;">销量<%=goods_list[i].goods_salenum*1 + goods_list[i].goods_virtual_salenum*1%></em>-->
+						</span>
+
+<!--						<p class="pdlist-iwc-pdcomment  clearfix">星级评价暂时拿掉
+						
+								
+
+							<span class="evaluation_good_swp mr5 fleft">
+
+							<%
+
+								for(var s = 0;s<goods_list[i].evaluation_good_star;s++){
+
+							%>
+
+								<span class="evaluation_good_star fleft"></span>
+
+							<%
+
+								}
+
+							%>
+
+							</span>
+
+							<span class="fleft">
+
+								(<%=goods_list[i].evaluation_count;%>人)
+
+							</span>
+
+						</p>-->
+
+				</a>
+
+						</li>
+
+						<%}%>
+
+				</ul>
+
+				<%
+
+	   }else {
+
+	%>
+
+					<div class="no-record">
+
+						暂无记录
+
+					</div>
+
+					<%
+
+	   }
+
+	%>
+
+		</script>
+		<div class="footer" id="footer"></div>
+	</body>
+
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+
+	<script type="text/javascript" src="../js/config.js"></script>
+
+	<script type="text/javascript" src="../js/zepto.min.js"></script>
+
+	<script type="text/javascript" src="../js/template.js"></script>
+
+	<script type="text/javascript" src="../js/common.js"></script>
+
+	<script type="text/javascript" src="../js/tmpl/common-top.js"></script>
+
+	<script type="text/javascript" src="../js/tmpl/market.js"></script>
+
+	<script type="text/javascript" src="../js/tmpl/footer.js"></script>
+
+	<script type="text/javascript" src="../js/swiper.min.js"></script>
+
+</html>

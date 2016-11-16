@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">    
+<head> 
+     <meta charset="UTF-8">   
+     <title>红包-去印咯商城</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">  
+     <meta name="apple-mobile-web-app-capable" content="yes">      
+     <meta name="apple-mobile-web-app-status-bar-style" content="black">
+     <meta name="format-detection" content="telephone=no">        
+     <link rel="stylesheet" type="text/css" href="../css/reset.css">        
+     <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">        
+     <link rel="stylesheet" type="text/css" href="../css/main.css">        
+     <link rel="stylesheet" type="text/css" href="../css/child.css">    
+     <script type="text/javascript" src="../js/zepto.min.js"></script>        
+     <script type="text/javascript" src="../js/config.js"></script>        
+     <script type="text/javascript" src="../js/common.js"></script>      
+     <script> var wap_html = "voucher";</script>
+     <script type="text/javascript" src="../js/tmpl/wexin_tuiguang.js"></script>  
+	
+    <style>
+		.board-voucher{
+			top:0;
+			display:block;
+			width:100%;
+			height:100%;
+		}
+		.board-head{
+			position:relative;
+			background-color:#F06;
+			display:block;
+			width:100%;
+			height:30%;
+			color:#FFF;
+			border-radius:30%;
+			top:-10%;
+			border:3px #666 solid;
+		}
+		.bt-voucher{
+			position:absolute;
+			display:block;
+			height:100px;
+			width:100px;
+			top:11%;
+			left:50%;
+			margin-left:-50px;
+			border: 3px solid #c0c0c0;
+			border-radius:50px;
+			color:#FFF;
+			text-align:center;
+			opacity:0;
+
+		}
+		.bt-voucher2{
+			position:absolute;
+			display:block;
+			height:100px;
+			width:100px;
+			top:11%;
+			left:50%;
+			margin-left:-50px;
+			border: 3px solid #c0c0c0;
+			border-radius:50px;
+			color:#FFF;
+			text-align:center;
+			opacity:0.5;
+
+		}
+		.voucher-text{
+			position:relative;
+		 	font-family: 'Microsoft yahei';
+			font-size:22px;
+		 	color: #fff;	
+		}
+		.header-wrap{
+			margin-left:5%;
+		}
+
+    </style>
+    <script>
+
+		$(document).ready(function(){
+		
+			//weixinAddContact('sconmall');
+			var click_count=0;
+			var key = getcookie('key');
+				if(key==''){
+					window.location.href = WapSiteUrl+'/tmpl/member/login.html';
+				}
+			voucher_id=GetQueryString('voucher_id');
+			
+			uid=GetQueryString('uid');
+			
+			addcookie('referurl',WapSiteUrl+'/tmpl/voucher.html?voucher_id='+voucher_id);
+			
+			//alert(decodeURIComponent(getcookie('referurl')));
+			
+			$(".bt-voucher").click(function(){
+				
+				if(click_count==0){
+					click_count=1;
+					//$(".voucher-text").text("拆......");
+					$(".bt-voucher").addClass("bt-voucher2");
+					get_voucher(voucher_id,uid,key);
+				}else{
+					//alert("请稍等...");
+				}
+				
+			});
+
+			
+			
+			
+		});
+		function GetRandomNum(Min,Max)
+		{   
+			var Range = Max - Min;   
+			var Rand = Math.random();   
+			return(Min + Math.round(Rand * Range));   
+		}   
+		function get_voucher(voucher_id,uid,key){
+			$.ajax({
+				type:'post',
+				url:ApiUrl+"/index.php?act=member_voucher&op=get_voucher&uid=" + uid,
+				data:{key:key,voucher_id:voucher_id,uid:uid},
+				dataType:'json',
+				success:function(result){
+					console.log(result);
+					var data = result.datas;
+					if(data.geted==1){alert('领取次数超过限制!');
+						window.location.href = "/wap";return false;
+					};
+					if(data.start==1){alert('此红包领取活动时间还未开始!');window.location.href = "/wap";return false;};
+					if(data.end==1){alert('活动已结束!');window.location.href = "/wap";return false;};
+					if(data.total_zero==1){alert('此次已经被抢光了!');window.location.href = "/wap";return false;};
+					//alert(ApiUrl+"/index.php?act=memeber_voucher&op=get_voucher&uid=" + uid);
+					window.location.href = WapSiteUrl+"/tmpl/voucher_show.html" + "?&voucher_id=" + voucher_id +"&uid=" + uid + "&voucher_code=" + data.voucher_code;
+				},
+                error: function () {
+                    alert('error');
+                }
+			});
+		}
+		
+
+    </script>
+</head>    
+<body>
+ 	<div class="board-voucher">
+<!--    	<span class="board-head">
+            <span class="header-wrap" style=" background-image: url(../images/home_logo.png);background-repeat: no-repeat;background-position: 2px 5px;padding-left: 135px; padding-bottom:35px;top:40%";>
+            </span>
+        </span>-->
+
+ 		<button class="bt-voucher">
+        	<strong><!--<p class="voucher-text">拆红包</p>-->  </strong>    
+        </button>
+        
+    	<img src="../images/hb.png" width="100%" height="100%" />
+        
+        
+    </div>
+                                         
+	<script type="text/javascript" src="../js/swiper.min.js"></script>                                        
+	<script type="text/javascript" src="../js/template.js"></script>                                        
+	<script type="text/javascript" src="../js/swipe.js"></script>                                        
+	<script type="text/javascript" src="../js/simple-plugin.js"></script>                                                                             
+	<!--<script type="text/javascript" src="../js/tmpl/voucher.js"></script>-->                                        
+</body>                                       
+</html>

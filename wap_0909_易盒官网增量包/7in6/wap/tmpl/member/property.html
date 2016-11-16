@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes" />  
+<title>去印咯</title>
+<link rel="stylesheet" href="../../css/yz-wap/css/layout.css">
+<link rel="stylesheet" href="../../css/yz-wap/css/base.css">
+<link rel="stylesheet" href="../../css/yz-wap/css/common.css"><!-- 在此css后添加自己的css引用 -->
+<link rel="stylesheet" href="../../css/property.css">
+<script src="../../css/yz-wap/js/lib/zeptojs/zepto.min.js"></script>
+<script src="../../css/yz-wap/js/frozen.js"></script>
+</head>
+<body ontouchstart="">
+	<!--头部-->
+	<header class="ui-header ui-header-positive ui-border-b yz-header">
+		<i class="ui-icon-return yz-icon-return" onclick="history.back()"><p class="f15">返回</p></i>
+		<h1>呼叫物业</h1>
+	</header>
+	<!--内容-->
+	<section class="ui-container yz-container">
+		<!--内容板块-->
+		<div class="mt20"><a class="bc disblock callBtn" href="property_call.html"></a></div>
+		<div class="tittle">
+			<img class="tittleImg01" src="../../images/property/tittle02.png" width="30px" height="53px">
+			<img class="tittleImg02" src="../../images/property/tittle.png" width="268.5px" height="29px">
+		</div>
+		<ul id="property_list">
+		<script type="text/html" id="home_property">
+		    <% for(var i = 0; i<property_list.length; i++){%>
+			<img class="fl docImg" src="../../images/property/doc.png" width="12px" height="66px">
+			<li class="infoList">
+				<div class="fl over">
+					<h1 class="ui-nowrap-flex"><%=property_list[i].content%></h1>
+					<h2>呼叫时间：<%=property_list[i].addtime%></h2>
+					<h3><%=property_list[i].status%></h3>
+				</div>
+				<img class="infoImg" src="../../images/property/info.png" width="25px" height="25px">
+			</li>
+			<%}%>
+		</script>
+		</ul>
+	</section>
+    <script type="text/javascript" src="../../js/config.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../js/template.js"></script>
+	<script type="text/javascript" src="../../js/tmpl/property.js"></script>
+</body>
+</html>

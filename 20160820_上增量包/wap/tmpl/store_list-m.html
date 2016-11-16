@@ -1,0 +1,208 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+	<meta charset="UTF-8">
+
+	<title>商家列表</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<meta name="format-detection" content="telephone=no">
+
+	<link rel="stylesheet" type="text/css" href="../css/reset.css">
+
+    <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
+
+	<link rel="stylesheet" type="text/css" href="../css/child.css">
+	
+	<link rel="stylesheet" type="text/css" href="../css/meituan.css">
+	
+	<style type="text/css">
+		#allmap{width:100%;height:200px;}
+		/*#allmap{width:1px;height:1px;}*/
+		p{margin-left:5px; font-size:14px;}
+	</style>
+</head>
+
+<body id="home-320">
+
+	<header id="header"></header>
+		
+		<div class="content">
+		<table width="100%"  style="background-color:#fe652c" height="90px">
+        	<tr>
+            	<td align="right"><a href="javascript:void(0);" class="btn-white" style="width:50%">全部商家</a></td><td align="left"><a  href="market.html" class="btn-white"  style="width:50%">小区超市</a></td>
+            </tr>
+        </table>
+        <div class="screening">
+            <ul>
+                <li class="Regional">城市区域</li>
+                <li class="meishi">商家分类</li>
+                <li class="Sort">排序</li>
+            </ul>
+        </div>        
+        <div class="grade-eject">
+        <ul class="grade-w" id="gradew">
+        <script type="text/html" id="gradew_body">
+        <%for(i=0;i<store_province.length;i++){%>
+        <li onclick="location.href=changeURLPar(location.href,'province_id',<%=store_province[i].province_id;%>)"><div><%=area['name'][store_province[i].province_id]?area['name'][store_province[i].province_id]:'全国';%></div></li>
+        <%}%>
+        </script>
+        </ul>
+        </div>
+        <div class="meishi22">   
+        <ul class="meishia-w" id="meishia">
+        <script type="text/html" id="meishia_body">
+        <%for(i=0;i<store_class.length;i++){%>
+        <li onclick="location.href=changeURLPar(location.href,'sc_id',<%=store_class[i].sc_id;%>)"><div><%=store_class[i].sc_name;%></div></li>
+        <%}%>
+        </script>
+        </ul>
+        </div>
+        <div class="Sort-eject Sort-height">
+        <ul class="Sort-Sort" id="Sort-Sort">
+        <li onclick="location.href=changeURLPar(location.href,'sort',0)">离我最近</li>
+        </ul>
+        </div>
+
+		<div class="product-cnt d_pd10 d_pbtm">
+
+			<div id="product_list"></div>
+
+			 <div class="pagination mt10">
+		
+        		<span>共<span id="page_total"></span>页 <span id="goods_total"></span>商家</span>
+                
+				<a href="javascript:void(0);" class="pre-page disabled">上一页</a>
+
+				<select name="page_list" style=" height:31px !important; line-height:30px; vertical-align: top; border-radius:4px;">
+
+				</select>
+
+				<a href="javascript:void(0);" class="next-page ">下一页</a>
+
+			</div>  
+
+		</div>
+		<div id="allmap"></div>
+	</div>
+	
+	<div class="footer" id="footer"></div>
+
+	<input type="hidden" name="key" value="4">
+
+	<input type="hidden" name="order" value="1">
+
+	<input type="hidden" name="page" value="10">
+
+	<input type="hidden" name="curpage" value="1">
+
+	<input type="hidden" name="hasmore">
+
+	<input type="hidden" name="gc_id" value="">
+
+	<input type="hidden" name="keyword">
+    
+	
+</body>
+
+<script type="text/html" id="home_body">
+
+	<% if(store_list_len >0){%>
+
+		<ul class="product-list">
+
+			<%for(i=0;i<store_list_len;i++){%>
+
+				<li class="pdlist-item d_product_list" goods_id="<%=store_list[i].store_id;%>">
+					<a href="go_store.html?store_id=<%=store_list[i].store_id;%>" class="pdlist-item-wrap clearfix">
+	
+						<span class="pdlist-iw-imgwp d_img_width">
+	
+							<img src="/data/upload/shop/store/<%=store_list[i].store_avatar%>"/>
+	
+						</span>
+	
+						<div class="pdlist-iw-cnt d_ml_140 d_descr">
+	
+							<p class="pdlist-iwc-pdname d_h40 ft14">
+	
+								<%=store_list[i].live_store_name;%>
+	
+							</p>
+	
+							<p>
+								<%=store_list[i].store_zy%>
+								<br>
+							</p>
+	
+							<p class="pdlist-iwc-pdprice">
+								<br>
+								￥<%=store_list[i].min_price;%> 起
+								
+							</p>
+							
+							<p> <br><%=store_list[i].live_store_address + ' ' + "距离您" + store_list[i].distance+ "米";%></p>
+	
+						</div>
+	
+					</a>
+	
+				</li>
+
+			<%}%>
+
+		</ul>
+
+	<%
+
+	   }else {
+
+	%>
+
+		<div class="no-record">
+
+            暂无记录
+
+        </div>
+
+	<%
+
+	   }
+
+	%>
+
+</script>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+
+<script type="text/javascript" src="../js/config.js"></script>
+
+<script type="text/javascript" src="../js/zepto.min.js"></script>
+
+<script type="text/javascript" src="../js/touch.js"></script>
+
+<script type="text/javascript" src="../js/template.js"></script>
+
+<script type="text/javascript" src="../js/common.js"></script>
+
+<script type="text/javascript" src="../js/tmpl/common-top.js"></script>
+
+<script type="text/javascript" src="../js/tmpl/footer.js"></script>
+
+<script type="text/javascript" src="../js/tmpl/store_list.js"></script>
+
+<script type="text/javascript" src="../js/meituan.js"></script>
+
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=gQHviGQpuaDrHNVPLRaT4nR3"></script>
+
+</html>

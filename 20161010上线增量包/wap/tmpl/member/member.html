@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的商城</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" type="text/css" href="../../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+	<link rel="stylesheet" type="text/css" href="../../css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/member.css">
+    <script type="text/javascript" src="../../js/config.js"></script>
+    <script type="text/javascript" src="../../js/zepto.min.js"></script>
+    <script type="text/javascript" src="../../js/template.js"></script>
+     
+    <script type="text/javascript" src="../../js/common.js"></script>
+    <script> var wap_html = "member";</script>
+    <script type="text/javascript" src="../../js/tmpl/wexin_tuiguang.js"></script>
+    <script type="text/javascript" src="../../js/tmpl/common-top.js"></script>
+    <script type="text/javascript" src="../../js/tmpl/member.js"></script>
+    <script type="text/javascript" src="../../js/tmpl/footer.js"></script>
+<style>
+  .jdt{
+	  display:inline-block;
+	  height:10px;
+	  width:100%;
+   }
+  .line-base{
+	  width:70%;
+	  height:10px;
+	  background:#dcdcdc;
+	  border-radius:10px;
+	  position:relative;
+	  display:inline-block;
+   }
+   .line-base-checked{
+	   width:95%;
+	   height:100%;
+	   border-radius:10px 0 0 10px;
+	   background:#20ce95;
+	   left:0;
+	   position:absolute;
+   }
+   .line-ball{
+	   width:20px;
+	   height:20px;
+	   border-radius:100%;
+	   background:#fff;
+	   -moz-box-shadou:0px 0px 8px #333333;
+	   -webkit-box-shadow:0px 0px 8px #333333;
+	   box-shadow:0px 0px 8px #333333;
+	   position:absolute;
+	   top:-4px;
+	   left:93%;
+	}
+	.progress{
+		top:-10px;
+		color:#ffdcb7;
+		position:absolute;
+		right:-50px;
+	}
+
+</style>
+</head>
+<body class="member-body">
+    <!-- <header id="header"></header> -->
+    <div class="m-top d-top clearfix">
+        <div class="m-avatar">
+            <img src="../../images/default.jpg" id="avatar"/><!-- <div class="d_img_box"></div> -->
+        </div>
+        <div class="m-infor">
+            <div class="d_lg_iphone">
+                <a id="logoutbtn" href="javascript:void(0);"><span>注销登录</span></a>
+                <h2>尊敬的<span id="username"></span>
+                <!-- &nbsp;:<p class="percent">您当前可用印币数：</p> -->
+                </h2>
+                <div class="clearfix">
+                    <!-- 
+                        Author：wugangjian；
+                        History：物业与印币占比；
+                        Change：替换为当前可用印币数；
+                    -->
+                    <!-- <div class="jdt">
+                        <div class="line-base">
+                            <div class="line-base-checked"></div>
+                            <div class="line-ball"></div>
+                            <p class="progress">100%</p>
+                        </div>
+                    
+                        <div class="clearfix"></div>
+                    </div> -->
+
+                    <div class="jdt">
+                        <h2><p class="percent">您当前可用印币数：<span id="point">0</span></p></h2>
+                    </div>
+                    
+
+                    <!-- <img src="../../images/jindutiao.png" alt="">
+                    <span>6%</span> -->
+                </div>
+
+                <p style="display:none">邀请人：<span id="invite_people"></span></p>
+             </div>
+            <div class="d_money">
+                <!-- <ul>
+                    <li><h5>印币</h5><p id="point">0</p></li>
+                    <li><h5>账号余额</h5><p id="predepoit" >0</p></li>
+                    <li><h5>充值卡余额</h5><p id="available_rc_balance">0</p></li>
+                </ul> -->
+
+                <ul>
+                    <li style="width:23%;"><a href="order_list.html?order_state=10"><img src="../../images/d_foot/dfk.png" style="width:22px;height:22px;"></a><h5>待付款</h5></li>
+                    <li style="width:23%;"><a href="order_list.html?order_state=20"><img src="../../images/d_foot/dfh.png" style="width:22px;height:22px;"></a><h5>待发货</h5></li>
+                    <li style="width:23%;"><a href="order_list.html?order_state=30"><img src="../../images/d_foot/dsh.png" style="width:22px;height:22px;"></a><h5>待收货</h5></li>
+                    <li style="width:23%;"><a href="order_list.html?order_state=40"><img src="../../images/d_foot/ywc.png" style="width:22px;height:22px;"></a><h5>已完成</h5></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="m-center d-center d_mine_main">
+        <ul class="mc-cnt d-mc-cnt">
+
+            <li class="liebiao1_geren">
+                    <a href="order_list.html" class="clearfix duoliebiao">
+                        <h3 class="h3">全部订单</h3>
+                        <span class="arrow-ent"></span>
+                    </a>
+                <!-- <a href="order_list.html" class="clearfix">
+                                     <h3 class="h3">虚拟交易订单</h3>
+                                    <span class="arrow-ent"></span>
+                                </a> -->
+            </li>
+            <li>
+                <a href="favorites.html" class="clearfix">
+                    <h3 class="h3">收藏的商品</h3>
+					<span class="arrow-ent"></span>
+                </a>
+            </li>
+            <!-- 
+                <a id="marketing" href="javascript:;" class="clearfix duoliebiao">
+                    <h3 class="h3">我的推广</h3>
+                                    <span class="arrow-ent"></span>
+                </a> -->   
+            <li>
+                <a href="/wap//tmpl/cart_list.html" class="clearfix">
+                    <h3 class="h3">我的购物车</h3>
+                    <span class="arrow-ent"></span>
+                </a>
+            </li> 
+            <li>
+                <a href="voucher_list.html" class="clearfix">
+                    <h3 class="h3">我的卡券包</h3>
+					<span class="arrow-ent"></span>
+                </a>
+            </li>         
+<!--            <li>
+                <a href="binding_phone.html">
+                    <img width="42%" src="../../images/d_bding_phone.png">
+                    <h3 class="h3">绑定手机</h3>
+                    <p>查看所有</p>
+
+                </a>
+            </li>-->
+            <!-- <li>
+                <a href="my_cash_integral.html" class="clearfix">
+                    <h3 class="h3">印币兑换</h3>
+                                <span class="arrow-ent"></span>
+                </a>
+            </li> -->
+            <!-- <li>
+                <a href="property.html" class="clearfix">
+                    <h3 class="h3">呼叫物业</h3>
+                                <span class="arrow-ent"></span>
+                </a>
+            </li> -->
+            <!-- <li>
+                <a href="#" class="clearfix">
+                    <h3 class="h3">我的家庭</h3>
+                                <span class="arrow-ent"></span>
+                </a>
+            </li> -->
+            <!--<li>
+                <a href="#" class="clearfix">
+                    <h3 class="h3">我要开店</h3>
+					<span class="arrow-ent"></span>
+                </a>
+            </li>
+            <li>
+                <a href="uesr_set.html" class="clearfix">
+                    <h3 class="h3">用户设置</h3>
+                                <span class="arrow-ent"></span>
+                </a>
+            </li>-->
+            <!-- <li>
+                <a href="#" class="clearfix">
+                    <h3 class="h3">关于去印咯</h3>
+                                <span class="arrow-ent"></span>
+                </a>
+            </li> -->
+            <!-- <li class="d_ot_color">
+                <a href="javascript:;">
+                    <h3 style="height:20px;" class="h3"></h3>
+                                <span class="arrow-ent"></span>
+            
+                </a>
+            </li> -->
+<!--            <li class="d_ot_color">
+                <a href="javascript:;">
+                    <img width="42%" src="../../images/d_my_modle.png">
+                    <h3 style="height:20px;" class="h3"></h3>
+                    <p style="height:20px;"></p>
+
+                </a>
+            </li>-->
+            <!-- <li>
+                <a href="views_list.html">
+                    <i class="im-history"></i>
+                    <h3 class="h3">浏览历史</h3>
+                     <span class="grayrightarrow"></span>
+                </a>
+            </li> -->
+            
+        </ul>
+    </div>
+    <div class="footer" id="footer"></div>
+    <div id="sign_in" class="sign_in"></div>
+</body>
+</html>

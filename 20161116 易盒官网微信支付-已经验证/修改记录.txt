@@ -1,0 +1,31 @@
+﻿修改记录
+1. mobile/control/member_payment.php
+第178行 
+$param['order_sn'] = $order_pay_info['pay_sn'];
+改为
+$param['pay_sn'] = $order_pay_info['pay_sn'];
+
+
+2.shop/control/payment.php 新增
+
+handleOp和pay_searchOp 模块
+ 
+
+3.修改mobile/api/payment/wxpay/wxpay.php
+76行
+$where['order_sn'] = $param['pay_sn'];
+改为
+$where['pay_sn'] = $param['pay_sn'];
+
+
+117 行
+$notify_url
+改为
+$notify_url =  'http://root.7in6.com/mobile/api/payment/wxpay/notify_url.php';
+
+
+4.修改mobile/api/payment/wxpay/notify_url.php
+
+修改66行起，原本直接操作数据，改为数据处理在payment.php,handleOp和pay_searchOp处理
+
+

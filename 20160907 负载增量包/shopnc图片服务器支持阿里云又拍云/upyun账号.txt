@@ -1,0 +1,5 @@
+服务器地址：v0.api.upyun.com
+账号：zifeng6257
+密码：zifeng6257
+空间名:images-7in6
+绑定域名:http://images-7in6.b0.upaiyun.com

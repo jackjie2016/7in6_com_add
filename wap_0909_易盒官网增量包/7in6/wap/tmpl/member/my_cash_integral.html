@@ -1,0 +1,408 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>印币兑换</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="stylesheet" type="text/css" href="../../css/reset.css">
+
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+
+    <link rel="stylesheet" type="text/css" href="../../css/member.css">
+	
+	<link rel="stylesheet" type="text/css" href="../../css/index.css">
+
+</head>
+
+
+<style type="text/css">
+.header-wrap{position: relative;background: #ffffff;z-index: 8888;height: 50px;  }
+.header-back{position: absolute;top: 6px;left: 0px;height: 32px;}
+.header-back span{width: 20px !important;height: 40px !important;text-indent:-9999px; background: url(../../images/d_returnh1.png) no-repeat center center !important; background-size: 12px auto !important; margin-right: 6px; margin-top: 0px; float: left; margin-left: 6px;}
+.header-back i { font-style: normal; color: #595959; line-height: 40px; float: left; vertical-align: middle;}
+.header-wrap h2{height: 50px;line-height: 50px;font-size: 16px;color: #595959;text-align: center;}
+.htsearch-wrap span{position: absolute;top: 10px;left: 85px;width: 2rem;height: 2rem;opacity: 0.3;background-image: url(../../images/search_ico.png);background-repeat: no-repeat;background-position: 50% 50%;background-size: 70%;}
+.d_htsearch-wrap {padding-right: 70px !important;}
+.d_htsearch-wrap .d_htsearch-input { border-radius: 15px; padding-left: 20px; background: #d04410;}
+.d_htsearch-wrap .d_htsearch-input::-webkit-input-placeholder{color:#fff}
+.d_search-btn { text-align: center; right: 10px !important; top: 11px !important; height: 30px !important; line-height: 30px; background: none !important; background-size: 20px;}
+</style>
+
+<body>
+<div class="search" style="background-color:#fe652c">
+  <div class="header-wrap" style="background-color:#fe652c"> <a href="javascript:history.back();" class="header-back"><span></span><i style="color:#fff;">返回</i></a>
+    <div class="htsearch-wrap d_htsearch-wrap" style="background-color:#fe652c"> <span></span>
+      <input type="text" class="htsearch-input clr-999 d_htsearch-input" value="" id="keyword" placeholder="&nbsp;&nbsp;搜索店铺内商品"   onFocus="jump_search()" />
+      <a href="javascript:void(0);" class="search-btn d_search-btn" style="display:none">搜索</a> </div>
+  </div>
+</div>
+
+    <div class="d_body">
+
+        <div class="d_body_top"></div>
+
+        <div class="d_ts_close">
+
+            <h4>兑换成功！</h4>
+
+            <p><span></span>秒后自动关闭</p>
+
+        </div>
+
+        <header id="header"></header>
+
+        <div class="order-list-wp d_my_member" id="">
+
+            <div class="d_integral_info">
+
+                <ul>
+
+                    <li>
+
+                        <div class="d_my_photo"><img width="100%" id="avatar" src="../../images/default.jpg"></div>
+
+                        <h4 id="member_name"></h4>
+
+                    </li>
+
+                    <li><h3>我的印币</h3><p><em id="jifen"></em>&nbsp;分</p></li>
+
+                    <li><a href="my_chit.html"><h3>代金卷</h3><p><em id="daijinjuan"></em>&nbsp;张</p></a></li>
+
+                    <li><a href="my_integral_order.html"><h3>已兑换</h3><p><em id="yiduihuan"></em>&nbsp;个</p></a></li>
+
+                </ul>
+
+            </div>
+
+            <div class="d_exchange_tle" style="
+    margin-top: 0px;
+">
+
+                <a href="my_cash_integral.html">
+
+                    <span class="d_exchenge_y" style="
+    height: 80px;
+"><i></i>兑换现金券</span>
+
+                </a>
+
+                <a href="my_integral.html"><span class="d_exchenge_b" style="
+    height: 80px;
+"><i></i>兑换礼品</span></a>
+
+            </div>
+
+            <div class="d_cash_exch_sort">
+
+                <div class="d_qu_money d_deal_curr" style="
+    width: 50%;
+"><span id="c_youhuijuan">优惠券面额<i></i></span>
+
+                    <ul class="d_quan_main" id="d_quan_main">
+
+                        <li>5元</li>
+
+                        <li>10元</li>
+
+                        <li>20元</li>
+
+                        <li>50元</li>
+
+                        <li>100元</li>
+
+                    </ul>
+
+                </div>
+
+                <!-- <div class="d_cash_sort" style="
+                    width: 33.333333%;
+                "><span id="c_feilei">分类筛选<i></i></span>
+                
+                    <ul id="store_class">                                               
+                
+                        <li><a class="d_cash_curr" href="javascript:;">服装鞋包</a></li>
+                
+                        <li><a href="javascript:;">3C数码</a></li>
+                
+                        <li><a href="javascript:;">美容护理</a></li>
+                
+                        <li><a href="javascript:;">家居用品</a></li>
+                
+                        <li><a href="javascript:;">食品/保健</a></li>
+                
+                        <li><a href="javascript:;">服装鞋包</a></li>
+                
+                        <li><a href="javascript:;">家居用品</a></li>
+                
+                        <li><a href="javascript:;">美容护理</a></li>
+                
+                        <li><a href="javascript:;">食品/保健</a></li>
+                
+                    </ul>
+                
+                </div> -->
+
+                <div class="d_sort_way" style="
+    width: 50%;
+"><span id="c_paixu">排序方式<i></i></span>
+
+                    <ul>
+
+                        <li><a href="javascript:;" onclick="get_xianjinjuan_list(0,0,0,0,0,'exchangenumdesc');hide_c_paixu()">兑换量</a></li>  
+
+                        <li><a href="javascript:;" onclick="get_xianjinjuan_list(0,0,0,0,0,'pointsdesc');hide_c_paixu()">印币值</a></li>
+
+                        <li><a href="javascript:;" onclick="get_xianjinjuan_list(0,0,0,0,0,0);hide_c_paixu()">默认排序</a></li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="d_member_list d_chit_main d_cash_inte">
+
+            <ul id="xianjinjuan_list">
+
+<!--                <li>
+
+                    <span class="d_myber_ph">
+
+                        <span></span>
+
+                        <p>￥10</p>
+
+                    </span>
+
+                    <div class="d_member_info">
+
+                        <h5>10元代金券<p style="display:inline-block;">（购物满100.00元可用）</p></h5>
+
+                        <p>店铺：<em>去印咯商城旗舰店</em></p>
+
+                        <p>有效期至：2015-07-30</p>
+
+                        <p>需 <font class="red" style="word-wrap:break-word;">1000</font>印币（500人已兑换）</p>
+
+                    </div>
+
+                    <div class="d_exch_detail">
+
+                        <p>您正在使用<em>&nbsp;1000&nbsp;</em>印币兑换<b style="color:#009bfd;">&nbsp;1&nbsp;</b>张<br>
+
+                            林小芬旗舰店<em>&nbsp;10元&nbsp;</em>店铺代金券（满100.00减20）<br>
+
+                            有效期至<span style="color:#373737;">&nbsp;2015-07-24</span>
+
+                        </p>
+
+                        <p>每个ID领取不限量</p>
+
+                        <i></i>
+
+                        <p class="d_exch_butn"><a class="d_exch_yes">兑&nbsp;&nbsp;换</a><a class="d_exch_no">取&nbsp;&nbsp;消</a></p>
+
+                    </div>
+
+                </li>
+
+                <li>
+
+                    <span class="d_myber_ph">
+
+                        <span></span>
+
+                        <p>￥100</p>
+
+                    </span>
+
+                    <div class="d_member_info">
+
+                        <h5>100元代金券<p style="display:inline-block;">（购物满100.00元可用）</p></h5>
+
+                        <p>店铺：<em>去印咯商城旗舰店</em></p>
+
+                        <p>有效期至：2015-07-30</p>
+
+                        <p>需 <font class="red" style="word-wrap:break-word;">1000</font>印币（500人已兑换）</p>
+
+                    </div>
+
+                    <div class="d_exch_detail">
+
+                        <p>您正在使用<em>&nbsp;1000&nbsp;</em>印币兑换<b style="color:#009bfd;">&nbsp;1&nbsp;</b>张<br>
+
+                            林小芬旗舰店<em>&nbsp;100元&nbsp;</em>店铺代金券（满100.00减20）<br>
+
+                            有效期至<span style="color:#373737;">&nbsp;2015-07-24</span>
+
+                        </p>
+
+                        <p>每个ID领取不限量</p>
+
+                        <i></i>
+
+                        <p class="d_exch_butn"><a class="d_exch_yes">兑&nbsp;&nbsp;换</a><a class="d_exch_no">取&nbsp;&nbsp;消</a></p>
+
+                    </div>
+
+                </li>-->
+
+            </ul>
+
+            <div class="pagination mt10" id="show_page"> 
+
+
+
+            </div>
+
+        </div>
+
+        </div>
+
+        <div id="footer"></div>
+
+    </div>
+
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+
+    <script type="text/javascript" src="../../js/zepto.min.js"></script>
+
+    <script type="text/javascript" src="../../js/template.js"></script>
+
+    <script type="text/javascript" src="../../js/config.js"></script>
+
+    <script type="text/javascript" src="../../js/common.js"></script>
+
+    <script type="text/javascript" src="../../js/tmpl/common-top.js"></script>
+
+    <script type="text/javascript" src="../../js/tmpl/footer.js"></script>
+
+    <script type="text/javascript" src="../../js/my_cash_integral.js"></script>
+
+    <!-- 导航点击效果 -->
+
+    <script type="text/javascript">
+
+        $('.d_cash_exch_sort > div > span').each(function(){
+
+            $(this).click(function(){
+
+                $(this).parent().siblings().removeClass('d_deal_curr');
+
+                $(this).parent().addClass('d_deal_curr');
+
+                $(this).parent().siblings().children('ul').hide();
+
+                $(this).parent().children('ul').toggle();
+
+            })
+
+        })
+
+        $('.d_cash_sort').find('li').each(function(){
+
+            $(this).click(function(){
+
+                $(this).children().addClass('d_cash_curr');
+
+                $(this).siblings().children().removeClass('d_cash_curr');
+
+            })
+
+        });
+
+
+
+        $('.d_my_member').css("padding-bottom",160)
+
+
+
+        /* 黑色透明背景和弹出框 */
+
+        var oMainH = $('.d_my_member').height()+300;
+
+        $('.d_cash_inte').find(".d_myber_ph").each(
+
+            function(){
+
+                $(this).click(function(){
+
+                    $(this).siblings('.d_exch_detail').show();
+
+                    $('.d_body_top').show().css("height",oMainH);
+
+                });
+
+        });
+
+        /* 兑换和兑换成功 */
+
+        var n = 3;
+
+        $('.d_ts_close').find("span").html(n);
+
+        var timer;
+
+        function times (){
+
+            if(n>0){
+
+                n--;
+
+                $('.d_ts_close').find("span").html(n);
+
+            }else{
+
+                $('.d_ts_close').hide();
+
+                $('.d_body_top').hide();
+
+                n = 3;
+
+                $('.d_ts_close').find("span").html(n);
+
+                clearInterval(timer)
+
+            }}
+
+        $('.d_exch_yes').click(function(){
+
+            $(this).parents('.d_exch_detail').hide();
+
+            $('.d_ts_close').show();
+
+            /* 自动计时关闭 */
+
+            timer = setInterval(times,1000);
+
+        });
+
+        /* 取消 */
+
+        $('.d_exch_no').click(function(){
+
+            $(this).parents('.d_exch_detail').hide();
+
+            $('.d_body_top').hide();
+
+        });
+
+    </script>    
+
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes" />  
+<title>去印咯</title>
+<link rel="stylesheet" href="../../css/yz-wap/css/layout.css">
+<link rel="stylesheet" href="../../css/yz-wap/css/base.css">
+<link rel="stylesheet" href="../../css/yz-wap/css/common.css"><!-- 在此css后添加自己的css引用 -->
+<link rel="stylesheet" href="../../css/property_call.css">
+<script src="../../css/yz-wap/js/lib/zeptojs/zepto.min.js"></script>
+<script src="../../css/yz-wap/js/frozen.js"></script>
+
+</head>
+<body ontouchstart="">
+	<!--头部-->
+	<header class="ui-header ui-header-positive ui-border-b yz-header">
+		<i class="ui-icon-return yz-icon-return" onclick="history.back()"><p class="f15">返回</p></i>
+		<h1>我要呼叫</h1>
+	</header>
+	<!--内容-->
+	<section class="ui-container yz-container">
+		<!--标题-->
+		<div class="ui-form ui-border-t mtop">
+	        <div class="ui-form-item ui-border-b">
+	            <label class="col_15">问题标题:</label>
+	            <input id="title" name="title" type="text" placeholder="一句话描述您的问题">
+	            <a href="#" class="ui-icon-close"></a>
+	        </div>
+		</div>
+		<!-- 地址 -->
+		<div class="ui-form ui-border-t mtop">
+	        <div class="ui-form-item ui-border-b">
+	            <label class="col_15">您的住址:</label>
+	            <input id="address" name="address" type="text" placeholder="输入您的具体住宅地址">
+	            <a href="#" class="ui-icon-close"></a>
+	        </div>
+		</div>
+		<!-- 留言 -->
+		<div class="ui-form ui-border-t mtop">
+	        <div class="ui-form-item ui-form-item-textarea ui-border-b callDetail">
+	            <label class="col_15">详细内容:</label>
+	            <textarea id="content" name="content" placeholder="这里输入您问题的详细内容"></textarea>
+	        </div>
+            <div class="yz-border-b addedStuff">
+            <!--<a class="added"><audio controls class="mt30"><source src="../../../data/upload/mobile/repair/626/20160321/20160321101653800008.amr" id="voice_src"/></audio></a>-->
+                <a class="added" id="btVoice">
+                    <img src="../../images/property/upload_voice.png" style="width:35px;height:56px;" onclick="javascript:$('input#voice').trigger('click');">
+                    <input id="voice" type="file" name="file2"  multiple accept="audio/*" capture="microphone"  onchange="change('voice_src','voice','')" style="display:none" />
+                    <p>添加语音</p>
+                </a>
+                <!--<a class="added"><audio src="../../../data/upload/mobile/repair/626/20160321/2016032110591621.wav" preload="auto"></audio></a>-->
+            </div>
+		</div>
+
+		<div class="yz-border-b addedStuff" id="imageList">
+	            <a class="added" id="btnImg">
+	            	<img id="preview1" src="../../images/property/upload_img.png" style="width:56px;height:65px;" onclick="javascript:$('input#pic1').trigger('click');">
+	            	<p>添加照片</p>
+	            	<input id="pic1" type="file" name="file" multiple accept="image/*" capture="camera"  onchange="change('preview1','pic1','')" style="display:none" />
+	            </a>
+        </div>
+	</section>
+	<!--底部大按钮-->
+	<footer class="ui-footer ui-footer-btn yz-footBtn">
+		<button class="yz-yellowBtnBlock yz-footBtn" onclick="javascript:addHandle()">提交呼叫</button>
+	    <div class="error-tips"></div>
+	</footer>
+    <script type="text/javascript" src="../../js/config.js"></script>
+    <script type="text/javascript" src="../../js/template.js"></script>
+    <script type="text/javascript" src="../../js/common.js"></script>
+    <script type="text/javascript" src="../../js/simple-plugin.js"></script>
+	<script type="text/javascript" src="../../js/tmpl/property.js"></script>
+    
+</body>
+</html>

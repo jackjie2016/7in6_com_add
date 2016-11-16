@@ -1,0 +1,27 @@
+16-11-16 12:14:46订单编号为同步到工单失败 
+16-11-16 12:15:08订单编号为同步到工单失败 
+16-11-16 12:15:34订单编号为同步到工单失败 
+16-11-16 12:19:08订单编号为同步到工单失败 
+16-11-16 12:25:10订单编号为同步到工单失败 
+pay_sn:5705325710919001
+16-11-16 12:26:15订单编号为同步到工单失败 
+pay_sn:5705325710919001
+16-11-16 12:28:51订单编号为同步到工单失败 
+pay_sn:5505325713890001
+16-11-16 12:29:01订单编号为同步到工单失败 
+pay_sn:5505325713890001
+16-11-16 12:29:18订单编号为同步到工单失败 
+pay_sn:5505325713890001
+16-11-16 12:29:49订单编号为同步到工单失败 
+pay_sn:5505325713890001
+16-11-16 12:29:58订单编号为同步到工单失败 
+pay_sn:2705325693273001
+16-11-16 12:31:09订单编号为同步到工单失败 
+pay_sn:8005325714795001
+{"sp_statusSucc":20,"sp_statusFail":"","sp_orderNum":null,"sp_addressee":null,"sp_address":null,"sp_mobile":null,"sp_goods":false,"sp_orderPayTime":null,"sp_orderRremarks":null,"sp_invoiceInfo":"","sp_orderFare":null,"sp_orderDiscount":null,"secret":"0cfb9da950382240bedb8dc628509a06"}16-11-16 12:31:25订单编号为同步到工单失败 
+pay_sn:8005325714795001
+{"sp_statusSucc":20,"sp_statusFail":"","sp_orderNum":null,"sp_addressee":null,"sp_address":null,"sp_mobile":null,"sp_goods":false,"sp_orderPayTime":null,"sp_orderRremarks":null,"sp_invoiceInfo":"","sp_orderFare":null,"sp_orderDiscount":null,"secret":"0cfb9da950382240bedb8dc628509a06"}16-11-16 12:31:58订单编号为同步到工单失败 
+pay_sn:8005325714795001
+{"sp_statusSucc":20,"sp_statusFail":"","sp_orderNum":null,"sp_addressee":null,"sp_address":null,"sp_mobile":null,"sp_goods":false,"sp_orderPayTime":null,"sp_orderRremarks":null,"sp_invoiceInfo":"","sp_orderFare":null,"sp_orderDiscount":null,"secret":"0cfb9da950382240bedb8dc628509a06"}16-11-16 12:33:19订单编号为同步到工单失败 
+pay_sn:8005325715221001
+{"sp_statusSucc":20,"sp_statusFail":"","sp_orderNum":null,"sp_addressee":null,"sp_address":null,"sp_mobile":null,"sp_goods":false,"sp_orderPayTime":null,"sp_orderRremarks":null,"sp_invoiceInfo":"","sp_orderFare":null,"sp_orderDiscount":null,"secret":"0cfb9da950382240bedb8dc628509a06"}{"sp_statusSucc":20,"sp_statusFail":"","sp_orderNum":null,"sp_addressee":null,"sp_address":null,"sp_mobile":null,"sp_goods":false,"sp_orderPayTime":null,"sp_orderRremarks":null,"sp_invoiceInfo":"","sp_orderFare":null,"sp_orderDiscount":null,"secret":"0cfb9da950382240bedb8dc628509a06"}

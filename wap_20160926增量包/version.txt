@@ -1,0 +1,6 @@
+1.微商城首页顶部样式调整D:\WWW\7in6\wap\index.html；D:\WWW\7in6\wap\main.css；
+
+2.专题页面底部代码调整，图片不显示；D:\WWW\7in6\wap\special.html；
+
+
+3.core中文件上传（裴玉）

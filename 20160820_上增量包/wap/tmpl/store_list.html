@@ -1,0 +1,206 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>商家列表</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" type="text/css" href="../css/reset.css">
+<link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="../css/main.css">
+<link rel="stylesheet" type="text/css" href="../css/child.css">
+<link rel="stylesheet" type="text/css" href="../css/meituan.css">
+<link rel="stylesheet" type="text/css" href="../css/index.css">
+<link rel="stylesheet" type="text/css" href="../css/index_2.css">
+<link rel="stylesheet" type="text/css" href="../css/go_store.css">
+<style type="text/css">
+#allmap {
+	position:absolute;
+	top:0;
+	z-index:-999;
+	width:500px;
+	height:200px;
+}
+/*#allmap{width:1px;height:1px;}*/
+		p {
+	margin-left:5px;
+	font-size:14px;
+}.content .tabs .left a{border-radius:5px 0 0 5px;float:right;text-align: center;}
+.content .tabs .center a{border-radius:0;}
+.content .tabs .right a{border-radius:0 5px 5px 0;text-align: center;}
+.content tr{display:block;width:80%;margin:10px auto;}
+.content td{display:block;width:33%;float:left;}
+
+</style>
+</head>
+
+<body id="home-320">
+
+<div class="search" style="background-color:#fe652c">
+  <div class="header-wrap" style="background-color:#fe652c"> <a href="javascript:history.back();" class="header-back"><span></span><i style="color:#fff;">返回</i></a>
+    <div class="htsearch-wrap d_htsearch-wrap" style="background-color:#fe652c"> <span></span>
+      <input type="text" class="htsearch-input clr-999 d_htsearch-input" value="" id="keyword" placeholder="&nbsp;&nbsp;搜索店铺内商品"   onFocus="jump_search()" />
+      <a href="javascript:void(0);" class="search-btn d_search-btn" style="display:none">搜索</a> </div>
+  </div>
+</div>
+<header id="header"></header>
+<div class="content">
+  <table width="100%"  style="background-color:#fe652c" height="65px" class="tabs">
+    <tr>
+      <td class="left"><a href="javascript:void(0);" class="btn-white" style="color:#fe652c;">全部商家</a></td>
+      <td class="center"><a  href="market.html" class="btn-white"  style="background-color:#fe652c;color:#fff;">小区超市</a></td>
+       <td class="right"><a  href="market.html" class="btn-white"  style="background-color:#fe652c;color:#fff;">邻居店铺</a></td>
+    </tr>
+  </table>
+  <div class="screening">
+    <ul style="background-color:#ff7744;">
+      <li class="Regional">城市区域<img src="../images/d_integral_mg2.png" alt=""></li>
+      <li class="meishi">商家分类<img src="../images/d_integral_mg2.png" alt=""></li>
+      <li class="Sort">排序<img src="../images/d_integral_mg2.png" alt=""></li>
+    </ul>
+  </div>
+  <div class="grade-eject">
+    <ul class="grade-w" id="gradew">
+      <script type="text/html" id="gradew_body">
+        <%for(i=0;i<store_province.length;i++){%>
+        <li onclick="location.href=changeURLPar(location.href,'city',escape('<%=store_province[i].area_name;%>'))"><div><%=store_province[i].area_name?store_province[i].area_name:'全国';%><span class="xiaobiao"><%=store_province[i].count?store_province[i].count:0;%>></span></div></li>
+        <%}%>
+        </script>
+    </ul>
+  </div>
+  <div class="meishi22">
+    <ul class="meishia-w" id="meishia">
+      <script type="text/html" id="meishia_body">
+        <%for(i=0;i<store_class.length;i++){%>
+        <li onclick="location.href=changeURLPar(location.href,'sc_id',<%=store_class[i].sc_id;%>)"><div><%=store_class[i].sc_name;%><span class="xiaobiao"><%=store_class[i].count?store_class[i].count:0;%>></span></div></li>
+        <%}%>
+        </script>
+    </ul>
+  </div>
+  <div class="Sort-eject Sort-height">
+    <ul class="Sort-Sort" id="Sort-Sort">
+      <li onClick="location.href=changeURLPar(location.href,'sort',0)">离我最近</li>
+    </ul>
+  </div>
+  <div class="product-cnt d_pd10 d_pbtm">
+    <div id="product_list"></div>
+
+  </div>
+  <div class="pbot" style="background-color: #EBEBEB;height:50px;"></div>
+</div>
+<div class="footer" id="footer"></div>
+<div id="allmap"></div>
+<div id="test"></div>
+</body>
+<script type="text/html" id="home_body">
+
+	<% if(store_list_len >0){%>
+
+		<ul class="product-list">
+
+			<%for(i=0;i<store_list_len;i++){%>
+
+				<li class="pdlist-item d_product_list" goods_id="<%=store_list[i].store_id;%>">
+					<a href="go_store.html?store_id=<%=store_list[i].store_id;%>" class="pdlist-item-wrap clearfix">
+	
+						<span class="pdlist-iw-imgwp d_img_width">
+	
+							<%if(store_list[i].store_avatar){%><img  src="/data/upload/shop/store/<%=store_list[i].store_avatar%>"/><%}else {%>
+	<img  src="/data/upload/shop/store/minPic.jpg"/><%} %>
+	
+						</span>
+	
+						<div class="pdlist-iw-cnt d_ml_140 d_descr">
+	
+							<p class="pdlist-iwc-pdname d_h40 ft14" >
+	
+								<label class="label_biaoti"><%=store_list[i].live_store_name;%></label>
+	
+							</p>
+	
+							<p class="p_title">
+								<%=store_list[i].store_zy%>
+			
+							</p>
+	
+							<p class="pdlist-iwc-pdprice" >
+					
+								<label class="yuan">￥<span  class="jine_index"><%=store_list[i].min_price;%> 起</span></label>
+								
+							</p>
+							
+							<p class="juli_index">
+								<%if(store_list[i].live_store_address){%>
+									<%=store_list[i].live_store_address + ' ' %>
+								<%}%>
+								<%if(store_list[i].distance){
+									if(store_list[i].distance>=1000){%>
+										<%="距离您" + store_list[i].distance/1000 + "公里";%>
+									<%}else{%>
+										<%="距离您" + store_list[i].distance + "米";%>
+									<%}
+								 }else{%>
+										未获取到商家的详细位置
+								<%}%>
+							</p>
+	
+						</div>
+	
+					</a>
+	
+				</li>
+
+			<%}%>
+
+		</ul>
+
+	<%
+
+	   }else {
+
+	%>
+
+		<div class="no-record">
+
+            暂无记录
+
+        </div>
+
+	<%
+
+	   }
+
+	%>
+	
+	
+
+</script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/config.js"></script>
+<script type="text/javascript" src="../js/zepto.min.js"></script>
+<script type="text/javascript" src="../js/touch.js"></script>
+<script type="text/javascript" src="../js/template.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/tmpl/common-top.js"></script>
+<script type="text/javascript" src="../js/tmpl/footer.js"></script>
+<script type="text/javascript" src="../js/tmpl/store_list.js"></script>
+<script type="text/javascript" src="../js/meituan.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=gQHviGQpuaDrHNVPLRaT4nR3"></script>
+<script type="text/javascript">
+	var a="";
+	$(".screening li").click(function(){
+		if($(this).attr("class")==a){
+			$(this).removeClass("add");
+			$(this).find("img").attr("src","../images/d_integral_mg2.png");
+			a="";
+		}else{
+			$(this).addClass("add").siblings().removeClass("add");
+			$(this).find("img").attr("src","../images/d_integral_mg3.png").parent().siblings().find("img").attr("src","../images/d_integral_mg2.png");
+			a = $(this).attr("class");
+		}
+	})
+</script>
+</html>

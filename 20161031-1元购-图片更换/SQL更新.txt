@@ -1,0 +1,1 @@
+UPDATE sykjshop_groupbuy SET end_time = '1478361599' WHERE groupbuy_id BETWEEN '21' AND '27';

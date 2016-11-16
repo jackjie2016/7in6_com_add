@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>去印咯商城</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<!-- 20160818-wugangjian-添加网站icon -->
+<link rel="short icon" type="image/x-icon" href="http://www.7in6.com/templates/default/images/icon1.png" media="all">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<meta name="format-detection" content="telephone=no">
+
+<link rel="stylesheet" type="text/css" href="css/resets.css">
+
+<link rel="stylesheet" type="text/css" href="css/fonts/iconfont.css">
+
+<link rel="stylesheet" type="text/css" href="css/share.css">
+
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+
+<link rel="stylesheet" type="text/css" href="css/main.css">
+
+<link rel="stylesheet" type="text/css" href="css/index.css">
+
+<link rel="stylesheet" type="text/css" href="css/index_2.css">
+
+<link rel="stylesheet" type="text/css" href="css/member.css">
+
+<link rel="stylesheet" type="text/css" href="css/go_store.css">
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+
+<script type="text/javascript" src="js/config.js"></script>
+
+<script type="text/javascript" src="js/common.js"></script>
+
+<script type="text/javascript" src="js/layer.m.js"></script>
+
+<script type="text/javascript" src="js/share.js"></script>
+
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=gQHviGQpuaDrHNVPLRaT4nR3"></script>
+
+<script >  var wap_html="index"; </script>
+<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script>
+<!--<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>-->
+<style>
+#allmap {
+	position:absolute;
+	top:0;
+	z-index:-999;
+	width:500px;
+	height:200px;
+}
+.tanceng_ts{
+	display: none;
+	position: fixed;
+	top: 20;
+	left: 20;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	background: rgba(0,0,0,0.2);
+	z-index: 99;
+}
+</style>
+</head>
+
+<body>
+
+<header class="main header1">
+
+    <div class="login-form">
+    
+                <div class="d_search_hd">
+    
+                    <table width="100%">
+                    <tr>
+	                    <td width="30%" align="center"><div><img src="images/wgj_img/logo.jpg" alt="" style="width:80%; height:80%; border-radius:10px 10px 10px 10px;"></div><!-- <p class="wy_company_wgj" style="color:#FFFfff;">易盒包装科技</p> --></td>
+	                    <td align="center" width="55%"><span class="search"><input id="keyword"  type="text" value="搜索的商品关键字" style="color:#8F8F8F"/></span></td>
+	                    <td align="center" width="15%">
+	                    <a  href="tmpl/member/login.html"  class="search-btn" style="background-color:#217dc1;color:#f8f6f7; font-size: 1.1em">登录</a>
+	                    </td>
+                    </tr>
+                    </table>
+    
+                </div>
+    
+    </div>
+
+</header>
+
+<!-- <div class="bshare-custom icon-medium-plus zhanshiqu">
+<table class="header2">
+    <tr>
+    	<td class="fenxiang" align="center" style="width:50%;">
+    		<div class="fxlan">分享喜悦</div>
+    		<div>
+    			<a href="javascript:share();" class="bshare-more sharebtn" style="color: #FFFfff;">分享喜悦&nbsp;<img src="images/fx.png" /></a>
+    		</div>
+    	</td>
+    	<td class="dibi" align="center">
+    	<div class="fxlan">
+    		<a href="tmpl/member/order_list.html" style="color: #FFFfff;">我的订单&nbsp;<img src="images/d_foot/wddd.png" /></a>
+    	</div>
+        <div class="jdt">
+            <div class="line-base">
+                <div class="line-base-checked"></div>
+                <div class="line-ball"></div>
+                <p class="progress">100%</p>
+            </div>
+            
+            <div class="clearfix"></div>
+        </div>
+      </td>
+    </tr>
+</table>
+</div> -->
+
+<!-- 20161102 wugangjian 添加代金券领取弹层提示 START -->
+<div class="tanceng_ts" style="display: none;">
+<a href="/wap/tmpl/voucher.html?voucher_id=1">
+	<img class="tanceng_tp" src="./images/wgj_img/x-2.png" style="width:20em; height:18em; margin-top: 5em">
+</a>
+<div>
+	<img class="tanceng_tp" src="./images/wgj_img/x.png" style="width:8%; height:8%; margin-top: 1em; margin-left: -2.5em;">
+</div>
+</div>
+<!-- 20161102 wugangjian 添加弹层提示 ENG -->
+
+<div id="demo" style="display:none;"></div>
+
+<div class="main" id="main-container"></div>
+
+
+
+<footer id="footer"></footer>
+
+<textarea id="sharebox" style="display:none;">
+	<ul class="sharebox clearfix">
+		<li><a href="javascript:weixin_share();" class="wxfxbtn"><i class="iconfont" style="color:#45b2ea;">&#xe627;</i><span>朋友圈</span></a></li>
+		<li><a href="javascript:weixin_share();" class="wxfxbtn"><i class="iconfont" style="color:#6bdd68;">&#xe628;</i><span>微信好友</span></a></li>
+		<li><a href="http://connect.qq.com/widget/shareqq/index.html?url=SiteUrl/wap/" target="_blank"><i class="iconfont" style="color:#3a6abd;">&#xe62b;</i><span>QQ好友</span></a></li>
+		<li><a href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=SiteUrl/wap/" target="_blank"><i class="iconfont" style="color:#3a6abd;">&#xe61e;</i><span>QQ空间</span></a></li>
+		<li><a href="http://service.weibo.com/share/share.php?url=SiteUrl/wap/&amp;title=分享文字内容" target="_blank"><i class="iconfont" style="color:#ff564f;">&#xe625;</i><span>新浪微博</span></a></li>
+	</ul>
+</textarea>
+
+<script type="text/html" id="adv_list">
+	<div class="adv_list">
+
+		<div class="swipe-wrap">
+
+		<% for (var i in item) { %>
+
+			<div class="item">
+
+				<a href="<%= item[i].url %>">
+
+					<img src="<%= item[i].image %>" alt="">
+
+				</a>
+
+			</div>
+
+		<% } %>
+
+		</div>
+
+	</div>
+	<!--<div class="d_search_hd">
+	
+		<span><input id="keyword"  type="text"/></span>
+	
+		<a  href="javascript:void(0);"  class="search-btn">搜索</a>
+	
+	</div>
+-->
+</script>
+<script type="text/html" id="home1">
+
+	<div class="index_block home1">
+
+	<% if (title) { %>
+
+		<div class="title"><%= title %></div>
+
+	<% } %>
+
+		<div class="content">
+
+			<div class="item">
+
+				<a href="<%= url %>">
+
+					<img src="<%= image %>" alt="">
+
+				</a>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/html" id="home2">
+
+	<div class="index_block home2">
+
+	<% if (title) { %>
+
+		<div class="title"><%= title %></div>
+
+	<% } %>
+
+		<div class="content">
+
+			<div class="item home2_1">
+
+				<a href="<%= square_url %>"><img src="<%= square_image %>" alt=""></a>
+
+			</div>
+
+			<div class="item home2_2">
+
+				<div class="border-left">
+
+					<div class="border-bottom">
+
+						<a href="<%= rectangle1_url %>"><img src="<%= rectangle1_image %>" alt=""></a>
+
+					</div>
+
+					<div>
+
+						<a href="<%= rectangle2_url %>"><img src="<%= rectangle2_image %>" alt=""></a>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</script>
+<style type="text/css">
+	#my_diy_1{width: 100%;background: white;overflow: hidden;display: none;}
+	#my_diy_1 ul{width: 104%;height: auto;display: block;overflow: hidden;}
+	#my_diy_1 ul>li{display: block;height: auto;width: 16%;float: left;padding: 0 4%;margin-top: 10px;}
+	#my_diy_1 ul>li>a{display: block;width: 80%;padding: 0px 10%;}
+	#my_diy_1 ul>li>span{display: block;width: 80%;height: 30px;line-height: 30px;text-align: center;padding: 0px 10%;}
+	.product-cnt{padding-bottom:50px;}
+</style>
+<script type="text/html" id="navigation_list">
+	
+<!--	<div id="my_diy_1">
+		<ul class="items_box">            
+			<li class="item">              
+				<a href=""><img src="./images/my/nav_1.jpg"></a>
+				<span>首页</span>
+			</li>
+			<li class="item">              
+				<a href=""><img src="./images/my/nav_2.jpg"></a>
+				<span>商品类别</span>
+			</li>
+			<li class="item">              
+				<a href=""><img src="./images/my/nav_3.jpg"></a>
+				<span>购物车</span>
+			</li>
+			<li class="item">              
+				<a href=""><img src="./images/my/nav_4.jpg"></a>
+				<span>个人中心</span>
+			</li>
+			<li class="item">              
+				<a href=""><img src="./images/my/nav_5.jpg"></a>
+				<span>自营</span>
+			</li>
+			<li class="item">              
+				<a href=""><img src="./images/my/nav_6.jpg"></a>
+				<span>店铺</span>
+			</li>
+			<li class="item">              
+				<a href=""><img src="./images/my/nav_7.jpg"></a>
+				<span>零食</span>
+			</li>
+			<li class="item">              
+				<a href=""><img src="./images/my/nav_8.jpg"></a>
+				<span>推荐</span>
+			</li>
+		</ul>
+	</div>-->
+	<div class="index_block navigation_list">
+
+	<% if (title) { %>
+
+		<div class="title"><%= title %></div>
+
+	<% } %>
+
+		<div class="content">
+
+		<% for (var i in item) {%>
+
+			<div class="item">
+
+				<!--<a href="<%= item[i].url %>"><img src="<%= item[i].image %>" alt=""></a>-->
+				<div><a href="<%= item[i].url %>"><img src="<%= item[i].image %>" alt=""></a></div>
+				<div class="menue_desc">
+					<%=item[i].title%>
+				</div>
+
+			</div>
+
+		<% } %>
+
+		</div>
+
+	</div>
+
+</script>
+<script type="text/html" id="home3">
+	
+	<div id="my_diy_1">
+		<ul class="items_box">            
+			<li class="item">              
+				<a href=""><img src="./images/my/nav_1.jpg"></a>
+				<span>首页</span>
+			</li>
+			<li class="item">              
+				<a href=""><img src="./images/my/nav_2.jpg"></a>
+				<span>商品类别</span>
+			</li>
+			<li class="item">              
+				<a href=""><img src="./images/my/nav_3.jpg"></a>
+				<span>购物车</span>
+			</li>
+			<li class="item">              
+				<a href=""><img src="./images/my/nav_4.jpg"></a>
+				<span>个人中心</span>
+			</li>
+			<li class="item">              
+				<a href=""><img src="./images/my/nav_5.jpg"></a>
+				<span>自营</span>
+			</li>
+			<li class="item">              
+				<a href=""><img src="./images/my/nav_6.jpg"></a>
+				<span>店铺</span>
+			</li>
+			<li class="item">              
+				<a href=""><img src="./images/my/nav_7.jpg"></a>
+				<span>零食</span>
+			</li>
+			<li class="item">              
+				<a href=""><img src="./images/my/nav_8.jpg"></a>
+				<span>推荐</span>
+			</li>
+		</ul>
+	</div>
+	<div class="index_block home3">
+
+	<% if (title) { %>
+
+		<div class="title"><%= title %></div>
+
+	<% } %>
+
+		<div class="content">
+
+		<% for (var i in item) { %>
+
+			<div class="item">
+
+				<a href="<%= item[i].url %>"><img src="<%= item[i].image %>" alt=""></a>
+
+			</div>
+
+		<% } %>
+
+		</div>
+
+	</div>
+
+</script>
+	<div class="fengexian"></div>
+
+	<!--
+	修改时间：20160707
+	修改人：wugangjian
+	修改内容：去除商家推荐
+	-->
+
+<div class="product-cnt d_pd10 d_pbtm">
+</div>
+
+<!--<div class="product-cnt d_pd10 d_pbtm">
+<div class="tuijian_fujin">附近商家推荐</div>
+    <div id="product_list"></div>
+</div>-->
+  
+<!--<script type="text/html" id="stores">
+
+	<% if(store_list_len >0){%>
+
+		<ul class="product-list">
+
+			<%for(i=0;i<store_list_len;i++){%>
+
+				<li class="pdlist-item d_product_list" goods_id="<%=store_list[i].store_id;%>">
+					<a href="tmpl/go_store.html?store_id=<%=store_list[i].store_id;%>" class="pdlist-item-wrap clearfix">
+	
+						<span class="pdlist-iw-imgwp d_img_width">
+						
+							<%if(store_list[i].store_avatar){%><img  src="SiteUrl/data/upload/shop/store/<%=store_list[i].store_avatar%>"/><%} else {%>
+	<img  src="SiteUrl/data/upload/shop/store/minPic.jpg"/><%} %>
+	
+						
+	
+						</span>
+	
+						<div class="pdlist-iw-cnt d_ml_140 d_descr">
+	
+							<p class="pdlist-iwc-pdname d_h40 ft14" >
+	
+								<label class="label_biaoti"><%=store_list[i].live_store_name;%></label>
+	
+							</p>
+	
+							<p class="p_title">
+								<%=store_list[i].store_zy%>
+			
+							</p>
+	
+							<p class="pdlist-iwc-pdprice" >
+					
+								<label class="yuan">￥<span class="jine_index"><%=store_list[i].min_price;%> 起</span></label>
+								
+							</p>
+							
+							<p class="juli_index">
+								<%if(store_list[i].live_store_address){%>
+									<%=store_list[i].live_store_address + ' ' %>
+								<%}%>
+								<%if(store_list[i].distance){
+									if(store_list[i].distance>=1000){%>
+										<%="距离您" + store_list[i].distance/1000 + "公里";%>
+									<%}else{%>
+										<%="距离您" + store_list[i].distance + "米";%>
+									<%}
+								 }else{%>
+										未获取到商家的详细位置
+								<%}%>
+							</p>
+	
+						</div>
+	
+					</a>
+	
+				</li>
+
+			<%}%>
+
+		</ul>
+
+	<%
+
+	   }else {
+
+	%>
+
+		<div class="no-record">
+
+            暂无记录
+
+        </div>
+
+	<%
+
+	   }
+
+	%>
+
+</script> -->
+<script type="text/html" id="home4">
+
+	<div class="index_block home2">
+
+	<% if (title) { %>
+
+		<div class="title"><%= title %></div>
+
+	<% } %>
+
+		<div class="content">
+
+			<div class="item home2_2">
+
+				<div class="border-right">
+
+					<div class="border-bottom">
+
+						<a href="<%= rectangle1_url %>"><img src="<%= rectangle1_image %>" alt=""></a>
+
+					</div>
+
+					<div>
+
+						<a href="<%= rectangle2_url %>"><img src="<%= rectangle2_image %>" alt=""></a>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="item home2_1">
+
+				<a href="<%= square_url %>"><img src="<%= square_image %>" alt=""></a>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/html" id="goods">
+
+	<div class="index_block goods">
+
+	<% if (title) { %>
+
+		<div class="title"><%= title %></div>
+
+	<% } %>
+
+		<div class="content">
+
+		<% for (var i in item) { %>
+
+			<div class="goods-item">
+
+				<a href="tmpl/product_detail.html?goods_id=<%= item[i].goods_id %>">
+
+					<div class="goods-item-pic d_box_h"><img src="<%= item[i].goods_image %>" alt=""></div>
+
+					<div class="goods-item-name"><%= item[i].goods_name %></div>
+
+					<div class="goods-item-price">￥<%= item[i].goods_promotion_price %></div>
+
+				</a>
+
+			</div>
+
+		<% } %>
+
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/javascript" src="js/zepto.min.js"></script>
+
+<script type="text/javascript" src="js/template.js"></script>
+
+<script type="text/javascript" src="js/swipe.js"></script>
+
+<script type="text/javascript" src="js/index.js"></script>
+
+<script type="text/javascript" src="js/tmpl/footer.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=gQHviGQpuaDrHNVPLRaT4nR3"></script>
+<!-- <div id="allmap"></div> -->
+</body>
+
+</html>
+

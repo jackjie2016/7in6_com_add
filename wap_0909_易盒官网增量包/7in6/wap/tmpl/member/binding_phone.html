@@ -1,0 +1,87 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>绑定手机</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="stylesheet" type="text/css" href="../../css/reset.css">
+
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+
+    <link rel="stylesheet" type="text/css" href="../../css/member.css">
+
+</head>
+
+<style type="text/css">
+
+    .header-wrap { background: #f6f6f6 !important;}
+
+    body{ background: #f6f6f6;}
+
+</style>
+
+<body>
+
+    <header id="header"></header>
+
+    <div class="binding_box">
+
+        <form action="" method="post" id="binding_mobile">
+
+            <p><input placeholder="手机号" id="mobile" name="mobile"  required="required"></p>
+
+            <p class="d_binding_in"  >
+
+            <input placeholder="码证码" required="required" name="vcode" id="vcode" >
+
+                <span  id="send_code" >发送验证码</span></p>
+
+            <!--<p><input placeholder="输入密码" required="required"></p>-->
+
+            <!--<p><input placeholder="再次输入密码" required="required"></p>-->
+
+            <a class="d_binding_btn" href="javascript:;" id="submit_form">绑&nbsp;&nbsp;定</a>
+
+            <div class="error-tips mt10"></div>
+
+        </form>
+
+        <p class="d_hint">温馨提示：<br>
+
+            通过手机绑定微信后，您可以在去印咯商城平台使用该手机号直接登录！
+
+        </p>
+
+    </div>
+
+    <div id="footer"></div>
+
+    <script type="text/javascript" src="../../js/zepto.min.js"></script>
+
+    <script type="text/javascript" src="../../js/template.js"></script>
+
+    <script type="text/javascript" src="../../js/config.js"></script>
+
+    <script type="text/javascript" src="../../js/common.js"></script>
+
+    <script type="text/javascript" src="../../js/tmpl/common-top.js"></script>
+
+    <script type="text/javascript" src="../../js/tmpl/footer.js"></script>
+
+    <script type="text/javascript" src="../../js/tmpl/binding_phone.js"></script>
+
+</body>
+
+</html>

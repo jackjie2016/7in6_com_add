@@ -1,0 +1,11 @@
+1 .修改member.model.php
+
+
+  public function register($register_info,$type="normal") 
+
+  public function addMember($param)
+
+2.控制器修改
+
+ 112行修改为$member_info = $model_member->getMemberInfo(array('weixin_unionid'=> $unionid));
+ 使用$unionid判断是否为注册用户
